@@ -1,0 +1,45 @@
+# Migration configuration for lessons content.
+id: lessons
+label: Lessons
+migration_group: School
+source:
+#  plugin: url
+  plugin: dynamic_lessons_url
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  # urls will get replaced with the configuration Migrate Rest credentials endpoint and dates.
+  urls: https://path/to/rest/json/feed
+  authentication:
+    plugin: basic
+    username: theuser
+    password: thepassword
+  item_selector: 0
+  track_changes: true
+  fields:
+    -
+      name: lesson_name
+      label: 'Lesson Name'
+      selector: LessonName
+    -
+      name: lesson_id
+      label: 'Lesson ID'
+      selector: LessonID
+  ids:
+    lesson_id:
+      type: string
+process:
+  title:
+    -
+      plugin: fix_special_chars
+      source: lesson_name
+    -
+      plugin: default_value
+      default_value: 'No title provided'
+  lesson_id: lesson_id
+  type:
+    plugin: default_value
+    default_value: lesson
+
+destination:
+  plugin: entity:node
+migration_dependencies: {}

@@ -1,0 +1,114 @@
+[
+  {
+    "pyID": "C-1",
+    "CourseInfo": {
+      "Skill": "Advanced",
+      "CourseBenefits": [
+        {
+          "pyLabel": "Gain a technical understanding of the subject."
+        }
+      ],
+      "SelfStudy": {
+        "Cost": "0",
+        "pyID": "C-1",
+        "IsValid": true,
+        "Duration": ""
+      },
+      "IsSelfStudy": true,
+      "ID": "C-78",
+      "CourseDescription": "The course provides executives with the knowledge and confidence they need to win a first meeting with marketing executives in their target accounts.",
+      "PACourseOutline": {
+        "LessonGroups": [
+          {
+            "GroupName": "Course Overview",
+            "Lessons": [
+              {
+                "pyID": "L-1"
+              }
+            ]
+          },
+          {
+            "GroupName": "Know Your Market",
+            "Lessons": [
+              {
+                "pyID": "L-1"
+              },
+              {
+                "pyID": "L-2"
+              }
+            ]
+          },
+          {
+            "GroupName": "Know Your Competition",
+            "Lessons": [
+              {
+                "pyID": "L-2"
+              }
+            ]
+          }
+        ]
+      },
+      "Department": [
+        {
+          "pyLabel": "Economics"
+        }
+      ],
+      "Roles": [],
+      "CourseTitle": "Marketing and Making the Sale"
+    }
+  },
+  {
+    "pyID": "C-2",
+    "CourseInfo": {
+      "SkillLevel": "Intermediate",
+      "CourseBenefits": [
+        {
+          "pyLabel": "Understand the new features and functionality introduced in the product"
+        }
+      ],
+      "SelfStudy": {
+        "Cost": "0",
+        "pyID": "C-2",
+        "IsValid": true,
+        "Duration": "0"
+      },
+      "IsSelfStudy": true,
+      "ID": "C-2",
+      "CourseDescription": "This course summarizes the new and enhanced features that provide functional, performance, or productivity benefits for system admins. Lessons consists of demonstrations",
+      "PACourseOutline": {
+        "LessonGroups": [
+          {
+            "GroupName": "Overview",
+            "Lessons": [
+              {
+                "pyID": "L-1"
+              }
+            ]
+          },
+          {
+            "GroupName": "What's New",
+            "Lessons": [
+              {
+                "pyID": "L-1"
+              },
+              {
+                "pyID": "L-2"
+              }
+            ]
+          }
+        ]
+      },
+      "Department": [
+        {
+          "pyLabel": "Computer Science"
+        }
+      ],
+      "Roles": [
+        {
+          "pyLabel": "Administrator"
+        }
+      ],
+      "CourseTitle": "Performance and Functionality"
+    }
+  }
+]

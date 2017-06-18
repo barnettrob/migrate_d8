@@ -1,0 +1,9 @@
+<?php
+/**
+ * Implements hook_uninstall().
+ */
+function migrate_d8_uninstall() {
+  \Drupal::database()->query("DELETE FROM {config} WHERE name = 'migrate_plus.migration.course'");
+  \Drupal::database()->query("DELETE FROM {config} WHERE name = 'migrate_plus.migration.lessons'");
+  drupal_flush_all_caches();
+}

@@ -1,0 +1,7 @@
+services:
+  migrate_d8.migrate_subscriber:
+    class: Drupal\migrate_d8\Event\MigrateD8MigrateEvent
+    tags:
+      - { name: event_subscriber }
+  rest_service_d8.service.configuration:
+    class: Drupal\rest_service_d8\Configuration\MigrateD8ServicesConfiguration

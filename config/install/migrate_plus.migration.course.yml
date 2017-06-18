@@ -1,0 +1,138 @@
+# Migration configuration for course content.
+id: course
+label: Course
+migration_group: School
+source:
+#  plugin: url
+  plugin: dynamic_courses_url
+  data_fetcher_plugin: http
+  data_parser_plugin: json
+  # urls will get replaced with the configuration in Rest credentials courses endpoint and course dates.
+  urls: https://path/to/rest/json/feed
+  authentication:
+    plugin: basic
+    username: theuser
+    password: thepassword
+  item_selector: 1
+  track_changes: true
+  fields:
+    -
+      name: course_id
+      label: 'Unique ID'
+      selector: ID
+    -
+      name: course_title
+      label: 'Title'
+      selector: CourseTitle
+    -
+      name: course_description
+      label: 'Page Body'
+      selector: CourseDescription
+    -
+      name: skill_level
+      label: 'Skill Level'
+      selector: SkillLevel
+    -
+      name: course_benefit
+      label: 'Course Benefit'
+      selector: CourseBenefits
+    -
+      name: roles
+      label: 'Roles'
+      selector: Roles
+    -
+      name: department
+      label: 'Department'
+      selector: Department
+    -
+      name: group_name
+      label: 'Group Name'
+      selector: PACourseOutline/LessonGroups
+    -
+      name: course_outline_page
+      label: 'Course Outline Page'
+      selector: CourseOutlinePage/GroupName
+    -
+      name: self_study_tab_source
+      label: 'Self Study Tab'
+      selector: SelfStudy
+    -
+      name: instructor_led_tab_source
+      label: 'Instructor Led Tab'
+      selector: Public
+    -
+      name: private_tab_source
+      label: 'Private Tab'
+      selector: Private
+    -
+      name: online_mentoring_source
+      label: 'Online Mentoring Tab'
+      selector: Online
+    -
+      name: url_alias
+      label: 'Url Alias'
+      selector: Public
+  ids:
+    course_id:
+      type: string
+process:
+  title:
+    -
+      plugin: check_node_on_update
+      source: course_title
+    -
+      plugin: default_value
+      default_value: 'No title provided'
+  'body/value': course_description
+  'body/format':
+    plugin: default_value
+    default_value: basic_html
+  course_id: course_id
+  skill_level: skill_level
+  course_benefit:
+    -
+      plugin: iterate_array_pylabel
+      source: course_benefit
+  role:
+    -
+      plugin: iterate_array_pylabel
+      source: roles
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      bundle_key: vid
+      bundle: role
+      value_key: name
+  department:
+    -
+      plugin: iterate_array_pylabel
+      source: department
+  lesson_groups:
+    plugin: paragraphs_import_lesson_groups
+    source: lesson_groups
+    paragraph_type: lesson_groups
+    fields:
+      - lesson: 'Lesson placeholder'
+  course_outline_page:
+    plugin: paragraphs_import_courseoutlinepage
+    source: course_outline_page
+    paragraph_type: course_outline_page
+    fields:
+      - group_name_outline_page: 'Group Name placeholder'
+      - topic_name: 'Topic Name placeholder'
+  delivery_container:
+    plugin: paragraphs_import_tabs
+    source: self_study_tab
+    paragraph_type: course_delivery_container
+    fields:
+      - cost_self: 'Cost placeholder'
+  type:
+    plugin: default_value
+    default_value: course
+
+destination:
+  plugin: entity:node
+migration_dependencies:
+  required:
+    - lessons
+
